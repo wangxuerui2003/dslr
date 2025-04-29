@@ -1,0 +1,13 @@
+# python
+__pycache__
+
+# venv
+*.venv
+*venv
+
+# environment
+.env
+.env.local
+
+# subject pdf (confidential)
+dslr.pdf
