@@ -76,7 +76,3 @@ if __name__ == "__main__":
         print(f"Usage: {sys.argv[0]} <dataset.csv>", file=sys.stderr)
         sys.exit(1)
     main(sys.argv[1])
-
-# Question: Which Hogwarts course has a homogeneous score distribution between all four houses?
-# Answer: Care of Magical Creatures
-		

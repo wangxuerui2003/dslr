@@ -79,7 +79,3 @@ if __name__ == "__main__":
         print(f"Usage: {sys.argv[0]} <dataset.csv>", file=sys.stderr)
         sys.exit(1)
     main(sys.argv[1])
-
-# Question: What are the two features that are similar?
-# Answer: Defense Against the Dark Arts and Astronomy, negatively linear relationship
-		
