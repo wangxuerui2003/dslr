@@ -53,8 +53,6 @@ def main(dataset_filename):
 
 	fig, axes = plt.subplots(nrows=len(NUMERICAL_FEATURE_COLUMNS), ncols=len(NUMERICAL_FEATURE_COLUMNS), figsize=(14, 12))
 
-	plt.subplots_adjust(wspace=0.8, hspace=0.6)
-
 	# Add row labels (left side)
 	for i, feature in enumerate(SHORTENED_NUMERICAL_FEATURE_COLUMNS):
 		axes[i, 0].set_ylabel(feature, rotation=0, fontsize=12, ha='right', va='center')
@@ -68,8 +66,10 @@ def main(dataset_filename):
 			xy_data = df[[NUMERICAL_FEATURE_COLUMNS[i], NUMERICAL_FEATURE_COLUMNS[j]]].dropna()
 			x = xy_data[NUMERICAL_FEATURE_COLUMNS[i]].to_numpy()
 			y = xy_data[NUMERICAL_FEATURE_COLUMNS[j]].to_numpy()
-			axes[i, j].scatter(x, y, s=2, color='skyblue')
+			axes[i, j].scatter(x, y, s=0.2, color='skyblue')
 			axes[i, j].tick_params(axis='both', labelsize=8)
+			axes[i, j].set_yticks([])
+			axes[i, j].set_xticks([])
 
 	plt.grid(True)
 	plt.show()
