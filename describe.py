@@ -73,16 +73,23 @@ def main(dataset_filename: str):
     try:
         df = pd.read_csv(dataset_filename)
     except FileNotFoundError as e:
-        print(f"{dataset_filename} not found.")
+        print(f"{dataset_filename} not found.", file=sys.stderr)
         sys.exit(1)
+    except Exception as e:
+        print(f"Invalid csv file: {e}", file=sys.stderr)
+        sys.exit(1)
+    
+    try:
+        numerical_features = df[NUMERICAL_FEATURE_COLUMNS]
+        statistics_df = pd.DataFrame(columns=NUMERICAL_FEATURE_COLUMNS, index=STATISTICS)
 
-    numerical_features = df[NUMERICAL_FEATURE_COLUMNS]
-    statistics_df = pd.DataFrame(columns=NUMERICAL_FEATURE_COLUMNS, index=STATISTICS)
+        for col_name, col_data in numerical_features.items():
+            statistics_df[col_name] = get_statistics(col_data.to_numpy())
 
-    for col_name, col_data in numerical_features.items():
-        statistics_df[col_name] = get_statistics(col_data.to_numpy())
-
-    print(statistics_df)
+        print(statistics_df)
+    except Exception as e:
+        print(f"Invalid dataset: {e}.", file=sys.stderr)
+        sys.exit(1)
 
     # For reference
     # print(numerical_features.describe())
