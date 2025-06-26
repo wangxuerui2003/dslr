@@ -63,9 +63,8 @@ def main(dataset_filename):
 
 	for i in range(len(HOGWARTS_HOUSES)):
 		for j in range(len(NUMERICAL_FEATURE_COLUMNS)):
-			data = df[df[TARGET_COLUMN] == HOGWARTS_HOUSES[i]][NUMERICAL_FEATURE_COLUMNS[j]].to_numpy()
-			data = np.nan_to_num(data, nan=0)
-			axes[i, j].hist(data, bins=30, color='skyblue', edgecolor='black')
+			data = df[df[TARGET_COLUMN] == HOGWARTS_HOUSES[i]][NUMERICAL_FEATURE_COLUMNS[j]].dropna().to_numpy()
+			axes[i, j].hist(data, bins=30, color='skyblue')
 			axes[i, j].tick_params(axis='both', labelsize=8)
 	
 	# Adjust layout to prevent overlap
